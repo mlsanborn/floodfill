@@ -6,72 +6,72 @@ public class Grid
 {
    private static final int SIZE = 10;
    int[][] pixels = new int[SIZE][SIZE]; // fills 10 x 10 with 0's
+   Stack<Integer> fill = new Stack<>();
    boolean cont = true;
    boolean up = true; boolean down = true; 
    boolean left = true; boolean right = true; // setting everything to true to start
+   
+   int count = 1 ;
+   int temp = 0;
+   int r = 0;
+   int c = 0;
    
    /**
       Flood fill, starting with the given row and column.
    */
    public void floodfill(int row, int col) // (row, col) is the coordinate it starts at probably  // (3,4) is the demo
    {
-       int num = 1; // number its on
+       int start = ((row) * 10) + (col) ; // where to start in stack
+       fill.push(start); 
        
-       
-       //pixels[row][col] = 1;
-       pixels [row][col] = num;
-       num++;
-       
-       while ( cont == true )
+       while ( cont )
        {
              
-            if ( row <= 0 || col <= 0 || row >= 9 || col >= 9 ){ // if any are out of bounds, check if can go
-                
-                if ( row <= 0 ) {up = false;} // if the row is on or less than the border, dont go up you dont have anywhere to go
-                else if ( pixels[row-1][col] != 0 ) {up = false;} // if it can still go up, check to see if the space is open
-                else {up = true;} // good to go pal
-                if ( row >= 9 ) {down = false;}
-                else if ( pixels[row+1][col] != 0 ) {down = false;}
-                else {down = true;}
-                if ( col <= 0 ) {left = false;}
-                else if ( pixels[row][col-1] != 0 )  {left = false;}
-                else{left = true;}
-                if ( col >= 9 ) {right = false;}
-                else if ( pixels[row][col+1] != 0 )  {right = false;}
-                else{right = true;}
-                
+            if (count < 100){
+                if (fill.contains(start - 10))  {up = false;}
+                if (fill.contains(start + 1))   {right = false;}
+                if (fill.contains((start + 10))){down = false;}
+                if (fill.contains(start - 1))   {left = false;}
             }
             
            
-            if (up == true){ 
-                pixels [row-1][col] = num;
-                num++;
-            }
-            if (right == true) {
-                pixels [row][col+1] = num;
-                num++;
-            }
-            if (down == true){
-                pixels [row+1][col] = num;
-                num++;
-            }
-            if (left == true) {
-                pixels [row][col-1] = num;
-                num++;
-            }
+            if ((start - 10) > 0 && up){
+                temp = fill.peek();
+                r = temp / 10;
+                c = temp % 10;
+                pixels[r][c] = count;
+                start -= 10;
+                fill.push(start);
+            }else if( !((( start + 1 ) % 10) == 0) && right ){
+                temp = fill.peek();
+                r = temp / 10;
+                c = temp % 10;
+                pixels[r][c] = count;
+                start += 1;
+                fill.push(start);
+            }else if ( (start + 10) < 100 && down ){
+                temp = fill.peek();
+                r = temp / 10;
+                c = temp % 10;
+                pixels[r][c] = count;
+                start += 10;
+                fill.push(start);
+            }else if(!(((start-1)%10) == 9) && ((start-1) > -1) && left){
+                temp = fill.peek();
+                r = temp/10;
+                c = temp%10;
+                pixels[r][c] = count;
+                start -= 1;
+                fill.push(start);
+            }else{start = 1000;}
             
-            if (num > 100)      {cont = false; System.out.print(" 1");} // dont go more than 100 please for the love of god
-            else if (left == true) {col--;System.out.print(" 5");} 
-            else if (up == true) {row--;System.out.print(" 2");} 
-            else if (right == true)  {col++;System.out.print(" 3");} 
-            else if (down == true)  {row++;System.out.print(" 4");}
-            else{cont = false;}
-            //else                                          {cont = false;System.out.print("hi6");} // if none open, stop
+            up = true; right = true; down = true; left = true; // reset all
             
-          
+            if (count >= 100) {cont = false;}
             
+            count++;
             
-            //System.out.print("help"+num);
+            //System.out.print("help"+num); // test
         }
        
    }
