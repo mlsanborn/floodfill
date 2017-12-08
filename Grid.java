@@ -1,10 +1,7 @@
-import java.util.*;
-// maggie sanborn
-// 12/2/17 ((im so sorry))
-// floodfill
 public class Grid
 {
    private static final int SIZE = 10;
+<<<<<<< HEAD
    int[][] pixels = new int[SIZE][SIZE]; // fills 10 x 10 with 0's
    Stack<Integer> fill = new Stack<>();
    boolean cont = true;
@@ -16,11 +13,17 @@ public class Grid
    int r = 0;
    int c = 0;
    
+=======
+   int[][] pixels = new int[SIZE][SIZE];
+   . . .
+
+>>>>>>> parent of 01e074b... hkfhtsjyrj
    /**
       Flood fill, starting with the given row and column.
    */
-   public void floodfill(int row, int col) // (row, col) is the coordinate it starts at probably  // (3,4) is the demo
+   public void floodfill(int row, int column)
    {
+<<<<<<< HEAD
        int start = ((row) * 10) + (col) ; // where to start in stack
        fill.push(start); 
        
@@ -74,12 +77,15 @@ public class Grid
             //System.out.print("help"+num); // test
         }
        
+=======
+      . . .
+>>>>>>> parent of 01e074b... hkfhtsjyrj
    }
-   
+
    @Override
    public String toString()
    {
-      String r = "\n";
+      String r = "";
       for (int i = 0; i < SIZE; i++)
       {
          for (int j = 0; j < SIZE; j++)
@@ -89,16 +95,3 @@ public class Grid
       return r;
    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
