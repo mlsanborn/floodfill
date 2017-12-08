@@ -2,6 +2,7 @@ public class Grid
 {
    private static final int SIZE = 10;
 <<<<<<< HEAD
+<<<<<<< HEAD
    int[][] pixels = new int[SIZE][SIZE]; // fills 10 x 10 with 0's
    Stack<Integer> fill = new Stack<>();
    boolean cont = true;
@@ -18,11 +19,17 @@ public class Grid
    . . .
 
 >>>>>>> parent of 01e074b... hkfhtsjyrj
+=======
+   int[][] pixels = new int[SIZE][SIZE];
+   . . .
+
+>>>>>>> parent of 01e074b... hkfhtsjyrj
    /**
       Flood fill, starting with the given row and column.
    */
    public void floodfill(int row, int column)
    {
+<<<<<<< HEAD
 <<<<<<< HEAD
        int start = ((row) * 10) + (col) ; // where to start in stack
        fill.push(start); 
@@ -77,6 +84,9 @@ public class Grid
             //System.out.print("help"+num); // test
         }
        
+=======
+      . . .
+>>>>>>> parent of 01e074b... hkfhtsjyrj
 =======
       . . .
 >>>>>>> parent of 01e074b... hkfhtsjyrj
